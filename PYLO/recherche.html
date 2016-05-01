@@ -1,0 +1,149 @@
+        <!doctype html>
+        <html lang="en-US">
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="Content-Type" content="text/html">
+          <title>PyLo search</title>
+          <meta name="author" content="Jake Rocheleau">
+          <link rel="stylesheet" type="text/css" media="all" href="css/recherche/styles.css">
+          <link rel="stylesheet" type="text/css" media="all" href="css/style_class.css">
+          <link rel="stylesheet" type="text/css" media="all" href="css/magnific-popup.css">
+          <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+          <link href="css/bootstrap.css" rel="stylesheet">
+          <script type="text/javascript" src="js/jquery.magnific-popup.min.js"> </script>
+            <link rel="stylesheet" type="text/css" media="all" href="css/recherche/styles.css">
+            <link rel="stylesheet" type="text/css" media="all" href="css/style_class.css">
+            <link rel="stylesheet" type="text/css" media="all" href="css/magnific-popup.css">
+            <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+            <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+
+          <script>
+            $(document).ready(function() {
+              $("#search").click(function () {
+
+                $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+                {
+                    tags: ""+document.getElementById('search_box').value,
+                    tagmode: "any",
+                    format: "json"
+                }, function(data){
+                  $.each(data.items, function(i, item){
+                      document.getElementById("imagecontent"+i).title = ""+item.title;
+                      document.getElementById("imagecontent"+i).href = ""+ item.media.m.replace('_m', '_b');
+                      document.getElementById("image"+i).src = ""+item.media.m.replace('_m', '');
+                    if(i == 8) return false;
+                  });
+                });
+              });
+            });
+          </script>
+      </head>
+
+      <body>
+
+
+      <div class="navbar-wrapper">
+          <div class="container">
+
+              <nav class="navbar navbar-inverse navbar-static-top">
+                  <div class="container">
+                      <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                          </button>
+                          <a class="navbar-brand" href="index.html">PYLO</a>
+                      </div>
+                      <div style="margin-left: 100px;" id="navbar" class="navbar-collapse collapse">
+                          <ul class="nav navbar-nav">
+                              <li><a href="index.html">Acueille</a>
+                              </li>
+
+                          </ul>
+                      </div>
+                  </div>
+              </nav>
+
+          </div>
+      </div>
+
+    <div class="featurette">
+        <div class="featurette-inner text-center">
+            <form role="form" class="search">
+                   <h1 class="no-margin-top">Zone de recherche</h1>
+                   <div class="input-group input-group-lg">
+                    <input id="search_box"type="search" placeholder="search" class="form-control">
+                    <span class="input-group-btn">
+                        <button id="search" class="btn btn-success" type="button">Chercher</button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </form>
+        <!-- /.max-width on this form -->
+
+        </div>
+    <!-- /.featurette-inner (display:table-cell) -->
+
+    </div>
+
+
+    <div id="wrapper" class="decendre" align="center">
+
+        <div>
+
+            <ul id="portfolio" class="clearfix">
+              <li><a id="imagecontent0" href="img/image.jpg"  title="Image par defaut"><img src="img/image.jpg" style="height:232px;"id="image0"></a></li>
+              <!-- https://dribbble.com/shots/1543255-Brick-and-Bay-Windows -->
+
+              <li><a id="imagecontent1" href="img/image.jpg" title="Image par defaut"><img src="img/image.jpg" style="height:232px;"id="image1"></a></li>
+              <!-- https://dribbble.com/shots/1543899-iPad-icons -->
+
+              <li><a id="imagecontent2" href="img/image.jpg" title="Image par defaut"><img src="img/image.jpg" style="height:232px;"id="image2"></a></li>
+              <!-- https://dribbble.com/shots/1543085-Profile -->
+
+              <li><a id="imagecontent3" href="img/image.jpg" title="Image par defaut"><img src="img/image.jpg" style="height:232px;"id="image3"></a></li>
+              <!-- https://dribbble.com/shots/1543210-574 -->
+
+              <li><a id="imagecontent4" href="img/image.jpg" title="Image par defaut"><img src="img/image.jpg" style="height:232px;"id="image4"></a></li>
+              <!-- https://dribbble.com/shots/1543610-Rive-Radio-app-icon-design -->
+
+              <li><a id="imagecontent5" href="img/image.jpg" title="Image par defaut"><img src="img/image.jpg" style="height:232px;"id="image5"></a></li>
+              <!-- https://dribbble.com/shots/1543316-Blood-Pressure-App -->
+
+              <li><a id="imagecontent6" href="img/image.jpg" title="Image par defaut"><img src="img/image.jpg" style="height:232px;"id="image6"></a></li>
+              <!-- https://dribbble.com/shots/1544255-Memories-Feed -->
+
+              <li><a id="imagecontent7" href="img/image.jpg" title="Image par defaut"><img src="img/image.jpg" style="height:232px;"id="image7"></a></li>
+
+
+              <li><a id="imagecontent8"  href="img/image.jpg" title="Image par defaut"><img src="img/image.jpg" style="height:232px;"id="image8"></a></li>
+              <!-- https://dribbble.com/shots/1544323-bc-pixels-fluid -->
+          </ul>
+        </div>
+    </div>
+
+
+    <div id="images">
+    </div>
+      <script type="text/javascript">
+          $(function(){
+              $('#portfolio').magnificPopup({
+                  delegate: 'a',
+                  type: 'image',
+                  image: {
+                      cursor: null,
+                      titleSrc: 'title'
+                  },
+                  gallery: {
+                      enabled: true,
+                      preload: [0,1], // Will preload 0 - before current, and 1 after the current image
+                      navigateByImgClick: true
+                  }
+              });
+          });
+      </script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    </body>
+    </html>
